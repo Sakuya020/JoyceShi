@@ -22,8 +22,8 @@ export default {
       type: 'string',
       options: {
         list: [
-          {title: 'Printed Matter', value: 'Printed Matter'},
-          {title: 'Digital Interface', value: 'Digital Interface'},
+          {title: 'Printed Matter', value: 'printed_matter'},
+          {title: 'Digital Interface', value: 'digital_interface'},
         ],
       },
     },
@@ -57,6 +57,12 @@ export default {
       title: 'Awards',
       type: 'array',
       of: [{type: 'string'}],
+    },
+    {
+      name: 'videos',
+      title: 'Videos',
+      type: 'array',
+      of: [{type: 'file'}],
     },
     {
       name: 'images',
