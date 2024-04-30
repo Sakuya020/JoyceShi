@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const getData = async () => {
   const query = `
-  *[_type == 'portfolio' && category == "digital_interface"]{
+  *[_type == 'portfolio' && category == "printed_matter"]{
     title,
       category,
       'cover':cover.asset._ref,
