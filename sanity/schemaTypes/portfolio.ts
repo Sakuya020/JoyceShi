@@ -62,7 +62,15 @@ export default {
       name: 'videos',
       title: 'Videos',
       type: 'array',
-      of: [{type: 'file'}],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {name: 'video', title: 'Video URL', type: 'string'},
+            {name: 'thumbnail', title: 'Thumbnail URL', type: 'image'},
+          ],
+        },
+      ],
     },
     {
       name: 'images',

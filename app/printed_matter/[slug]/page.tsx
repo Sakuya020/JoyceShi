@@ -1,4 +1,5 @@
 import Divider from "@/components/Divider";
+import VideoPlayer from "@/components/VideoPlayer";
 import { client } from "@/lib/sanity";
 import { getImageInfo } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
@@ -14,6 +15,10 @@ const getData = async (slug: string) => {
       agency,
       awards,
       desc,
+      videos[]{
+        "video": video,
+        "thumbnail": thumbnail.asset._ref
+      },
       images[]{
         "image": asset._ref
       }
@@ -24,9 +29,8 @@ const getData = async (slug: string) => {
 };
 
 const page = async ({ params }: { params: { slug: string } }) => {
-  const { title, type, client, agency, awards, desc, images } = await getData(
-    params.slug
-  );
+  const { title, type, client, agency, awards, desc, videos, images } =
+    await getData(params.slug);
 
   return (
     <article>
@@ -74,7 +78,14 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
       <Divider className="my-[15px] sm:my-[10px]" />
 
+      {/* images */}
       <figure className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {videos?.length > 0 &&
+          videos.map(
+            (item: { video: string; thumbnail: string }, index: number) => (
+              <VideoPlayer key={index} item={item} />
+            )
+          )}
         {images.map((item: { image: string }, index: number) => {
           const { imgUrl, ratio } = getImageInfo(item.image);
           return (
