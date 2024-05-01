@@ -37,7 +37,7 @@ const Accordion = ({ children, title }: AccordionProps) => {
         {/* expand */}
         <div
           className={cn(
-            "transition-all duration-200 ease-linear overflow-hidden prose prose-p:text-sm prose-a:font-normal",
+            "transition-all duration-100 ease-linear overflow-hidden prose prose-p:text-sm prose-a:font-normal",
             accordionOpen ? "h-max opacity-100" : "h-0 opacity-0"
           )}
         >
