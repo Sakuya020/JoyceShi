@@ -25,7 +25,12 @@ const Accordion = ({ children, title }: AccordionProps) => {
           !accordionOpen && "border-r"
         )}
       >
-        <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+        <ArrowRightIcon
+          className={cn(
+            "w-4 h-4 mr-2 transition-all duration-200 ease-in-out",
+            accordionOpen && "rotate-45"
+          )}
+        />
         {title}
       </p>
       <div
