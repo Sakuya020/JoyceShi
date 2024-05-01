@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
 interface AccordionProps {
