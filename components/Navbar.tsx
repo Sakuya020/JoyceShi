@@ -20,12 +20,12 @@ const routes = [
 const socials = [
   { name: "G Axis Press", href: "https://gaxis.press/" },
   {
-    name: "Instagram",
+    name: "instagram",
     href: "https://www.instagram.com/gloamaxis/?igshid=YmMyMTA2M2Y%3D",
   },
   { name: "joyceshidesign@gmail.com", href: "mailto:joyceshidesign@gmail.com" },
   {
-    name: "Resume",
+    name: "resume",
     href: "https://drive.google.com/file/d/1PItNqPCMpBB5bFmDLqDpwux05vBWqp4V/view",
   },
   {
@@ -39,80 +39,83 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav>
-      <div className="w-full h-[110px] sm:h-[167px] flex justify-between">
-        <Link
-          href="/intro"
-          onClick={(e) => {
-            if (pathname == "/intro") {
-              e.preventDefault();
-              router.push("/");
-            }
-          }}
-        >
-          <Button
-            className={cn(
-              "group",
-              pathname === "/intro" && "text-primary-foreground"
-            )}
+    <>
+      <nav className="fixed pt-3 w-full top-0 bg-background pr-8 sm:pr-0 sm:mb-0 sm:static z-10">
+        <div className="w-full h-[110px] sm:h-[167px] flex justify-between">
+          <Link
+            href="/intro"
+            onClick={(e) => {
+              if (pathname == "/intro") {
+                e.preventDefault();
+                router.push("/");
+              }
+            }}
           >
-            <ArrowRightIcon
+            <Button
               className={cn(
-                "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
-                pathname === "/intro" && "rotate-45"
+                "group",
+                pathname === "/intro" && "text-primary-foreground"
               )}
-            />
-            Joyce Shi
-          </Button>
-        </Link>
-        <ul className="flex gap-12">
-          <li className="hidden sm:flex flex-col">
-            {socials.map(({ name, href }) => (
-              <Link key={name} href={href}>
-                <Button className="group underline">
-                  <ArrowRightIcon className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" />
-                  {name}
-                </Button>
-              </Link>
-            ))}
-          </li>
-          <li className="flex flex-col">
-            {routes.map(({ name, href, value }) => (
-              <Link
-                key={name}
-                href={href}
-                onClick={(e) => {
-                  if (pathname.includes(value)) {
-                    e.preventDefault();
-                    router.push("/");
-                  }
-                }}
-              >
-                <Button
-                  className={cn(
-                    "group",
-                    pathname.includes(value) && "text-primary-foreground",
-                    pathname === "/" &&
-                      value === "homepage" &&
-                      "text-primary-foreground"
-                  )}
+            >
+              <ArrowRightIcon
+                className={cn(
+                  "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                  pathname === "/intro" && "rotate-45"
+                )}
+              />
+              Joyce Shi
+            </Button>
+          </Link>
+          <ul className="flex gap-12">
+            <li className="hidden sm:flex flex-col">
+              {socials.map(({ name, href }) => (
+                <Link key={name} href={href}>
+                  <Button className="group underline">
+                    <ArrowRightIcon className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" />
+                    {name}
+                  </Button>
+                </Link>
+              ))}
+            </li>
+            <li className="flex flex-col">
+              {routes.map(({ name, href, value }) => (
+                <Link
+                  key={name}
+                  href={href}
+                  onClick={(e) => {
+                    if (pathname.includes(value)) {
+                      e.preventDefault();
+                      router.push("/");
+                    }
+                  }}
                 >
-                  <ArrowRightIcon
+                  <Button
                     className={cn(
-                      "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
-                      pathname.includes(value) && "rotate-45",
-                      pathname === "/" && value === "homepage" && "rotate-45"
+                      "group",
+                      pathname.includes(value) && "text-primary-foreground",
+                      pathname === "/" &&
+                        value === "homepage" &&
+                        "text-primary-foreground"
                     )}
-                  />
-                  {name}
-                </Button>
-              </Link>
-            ))}
-          </li>
-        </ul>
-      </div>
-      <Divider className="mb-[15px] sm:mb-[10px]" />
-    </nav>
+                  >
+                    <ArrowRightIcon
+                      className={cn(
+                        "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                        pathname.includes(value) && "rotate-45",
+                        pathname === "/" && value === "homepage" && "rotate-45"
+                      )}
+                    />
+                    {name}
+                  </Button>
+                </Link>
+              ))}
+            </li>
+          </ul>
+        </div>
+        <Divider className="sm:mb-[10px]" />
+      </nav>
+      <div className="h-[122px] sm:h-0"></div>
+    </>
   );
 };
 

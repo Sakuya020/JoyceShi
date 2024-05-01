@@ -33,7 +33,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <br className="mb-[10px]" />
-        <footer className="fixed w-full py-[8px] bottom-0 bg-white">
+        <footer className="fixed w-full py-[8px] bottom-0 bg-white text-sm">
           © Joyce Shi 2016-2024.
         </footer>
       </body>
