@@ -1,10 +1,9 @@
 import Accordion from "@/components/Accordion";
 import Divider from "@/components/Divider";
 import SocialLink from "@/components/SocialLink";
-import { Button } from "@/components/ui/button";
 import { client } from "@/lib/sanity";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { PortableText } from "next-sanity";
 
 const getData = async () => {
   const query = `
@@ -36,50 +35,29 @@ const Intro = async () => {
   return (
     <>
       <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 text-sm">
-        {data.map(
-          ({
-            title,
-            desc,
-          }: {
-            title: string;
-            desc: { children: { text: string }[] }[];
-          }) => (
-            <>
-              {/* desktop view */}
-              <section className="hidden sm:block" key={title}>
-                <h1 className="flex items-center">
-                  <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
-                  {title}
-                </h1>
-                <Divider className="mt-[10px] mb-5" />
-                <div className="min-h-screen px-[15px] border-l border-foreground">
-                  {desc.map(
-                    (
-                      block: { children: { text: string }[] },
-                      index: number
-                    ) => (
-                      <p key={index}>{block.children[0].text}</p>
-                    )
-                  )}
-                </div>
-              </section>
-              {/* phone view */}
-              <section className="sm:hidden">
-                <Accordion title={title}>
-                  {desc.map(
-                    (
-                      block: { children: { text: string }[] },
-                      index: number
-                    ) => (
-                      <p key={index}>{block.children[0].text}</p>
-                    )
-                  )}
-                </Accordion>
-                <Divider className="my-4" />
-              </section>
-            </>
-          )
-        )}
+        {data.map(({ title, desc }: { title: string; desc: any }) => (
+          <>
+            {/* desktop view */}
+            <section className="hidden sm:block" key={title}>
+              <h1 className="flex items-center">
+                <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+                {title}
+              </h1>
+              <Divider className="mt-[10px] mb-5" />
+              <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-sm prose-a:font-normal">
+                <PortableText value={desc} />
+              </div>
+            </section>
+
+            {/* phone view */}
+            <section className="sm:hidden">
+              <Accordion title={title}>
+                <PortableText value={desc} />
+              </Accordion>
+              <Divider className="my-4" />
+            </section>
+          </>
+        ))}
         <section className="sm:hidden">
           <Accordion title="Contacts">
             {socials.map(({ name, href }) => (
@@ -90,6 +68,7 @@ const Intro = async () => {
           <Divider className="my-4 col-span-3" />
         </section>
       </article>
+      <div className="h-[1px] w-full bg-foreground mb-4 mt-52 sm:mt-0 hidden sm:block"></div>
     </>
   );
 };

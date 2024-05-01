@@ -9,7 +9,7 @@ interface AccordionProps {
   title: string;
 }
 
-const Accordion = ({ children, title, ...props }: AccordionProps) => {
+const Accordion = ({ children, title }: AccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   return (
@@ -19,19 +19,31 @@ const Accordion = ({ children, title, ...props }: AccordionProps) => {
         setAccordionOpen(!accordionOpen);
       }}
     >
-      <h1 className="col-span-1 flex items-center">
+      <p
+        className={cn(
+          "col-span-1 flex items-center border-foreground",
+          !accordionOpen && "border-r"
+        )}
+      >
         <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
         {title}
-      </h1>
-      <div className="col-span-2 pl-5 border-l border-foreground">
+      </p>
+      <div
+        className={cn(
+          "col-span-2 pl-5 border-foreground",
+          accordionOpen && "border-l"
+        )}
+      >
+        {/* expand */}
         <div
           className={cn(
-            "transition-all duration-200 ease-linear overflow-hidden",
+            "transition-all duration-200 ease-linear overflow-hidden prose prose-p:text-sm prose-a:font-normal",
             accordionOpen ? "h-max opacity-100" : "h-0 opacity-0"
           )}
         >
           {children}
         </div>
+        {/* collapse */}
         <p
           className={cn(!accordionOpen ? "h-max opacity-100" : "h-0 opacity-0")}
         >
