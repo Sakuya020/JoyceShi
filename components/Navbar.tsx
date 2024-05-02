@@ -6,6 +6,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Divider from "./Divider";
+import NavbarPhone from "./NavbarPhone";
 
 const routes = [
   { name: "Homepage", href: "/", value: "homepage" },
@@ -40,8 +41,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed pt-3 w-full top-0 bg-background pr-8 sm:pr-0 sm:mb-0 sm:static z-10">
-        <div className="w-full h-[110px] sm:h-[167px] flex justify-between">
+      <nav className="fixed top-0 w-full pt-4 sm:pt-[10px] pr-8 sm:pr-5 sm:mb-0 bg-background z-10">
+        <div className="w-full h-[110px] sm:h-[167px] grid grid-cols-3 sm:grid-cols-6 sm:gap-[10px]">
+          {/* Joyce Shi */}
           <Link
             href="/intro"
             onClick={(e) => {
@@ -50,6 +52,7 @@ const Navbar = () => {
                 router.push("/");
               }
             }}
+            className="col-span-1"
           >
             <Button
               className={cn(
@@ -59,62 +62,73 @@ const Navbar = () => {
             >
               <ArrowRightIcon
                 className={cn(
-                  "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                  "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
                   pathname === "/intro" && "rotate-45"
                 )}
               />
               Joyce Shi
             </Button>
           </Link>
-          <ul className="flex gap-12">
-            <li className="hidden sm:flex flex-col">
-              {socials.map(({ name, href }) => (
-                <Link key={name} href={href}>
-                  <Button className="group underline">
-                    <ArrowRightIcon className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" />
-                    {name}
-                  </Button>
-                </Link>
-              ))}
-            </li>
-            <li className="flex flex-col">
-              {routes.map(({ name, href, value }) => (
-                <Link
-                  key={name}
-                  href={href}
-                  onClick={(e) => {
-                    if (pathname.includes(value)) {
-                      e.preventDefault();
-                      router.push("/");
-                    }
-                  }}
+
+          {/* social links */}
+          <li className="hidden col-span-1 col-start-5 col-end-6 sm:flex flex-col -space-y-2">
+            {socials.map(({ name, href }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="group underline">
+                  <ArrowRightIcon className="w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300" />
+                  {name}
+                </Button>
+              </a>
+            ))}
+          </li>
+
+          {/* Homepage, Printed Matter, Digital Interface for pc view */}
+          <li className="hidden sm:flex col-span-1 col-start-6 col-end-7 flex-col -space-y-2">
+            {routes.map(({ name, href, value }) => (
+              <Link
+                key={name}
+                href={href}
+                onClick={(e) => {
+                  if (pathname.includes(value)) {
+                    e.preventDefault();
+                    router.push("/");
+                  }
+                }}
+                className="first:mb-[14px]"
+              >
+                <Button
+                  className={cn(
+                    "group",
+                    pathname.includes(value) && "text-primary-foreground",
+                    pathname === "/" &&
+                      value === "homepage" &&
+                      "text-primary-foreground"
+                  )}
                 >
-                  <Button
+                  <ArrowRightIcon
                     className={cn(
-                      "group",
-                      pathname.includes(value) && "text-primary-foreground",
-                      pathname === "/" &&
-                        value === "homepage" &&
-                        "text-primary-foreground"
+                      "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                      pathname.includes(value) && "rotate-45",
+                      pathname === "/" && value === "homepage" && "rotate-45"
                     )}
-                  >
-                    <ArrowRightIcon
-                      className={cn(
-                        "w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300",
-                        pathname.includes(value) && "rotate-45",
-                        pathname === "/" && value === "homepage" && "rotate-45"
-                      )}
-                    />
-                    {name}
-                  </Button>
-                </Link>
-              ))}
-            </li>
-          </ul>
+                  />
+                  {name}
+                </Button>
+              </Link>
+            ))}
+          </li>
+
+          {/* Homepage, Printed Matter, Digital Interface for phone view */}
+          <NavbarPhone />
         </div>
-        <Divider className="sm:mb-[10px]" />
+        <Divider />
       </nav>
-      <div className="h-[122px] sm:h-0"></div>
+      <div className="h-[110px] sm:h-[167px]"></div>
     </>
   );
 };

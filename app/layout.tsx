@@ -3,6 +3,7 @@ import { DM_Mono as FontSans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
+import Footer from "@/components/Footer";
 
 const fontSans = FontSans({
   weight: ["300", "400", "500"],
@@ -34,10 +35,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
-        <br className="mb-[10px]" />
-        <footer className="fixed w-full py-[8px] bottom-0 bg-white text-sm">
-          © Joyce Shi 2016-2024.
-        </footer>
+        <Footer />
       </body>
     </html>
   );

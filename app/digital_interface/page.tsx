@@ -19,7 +19,7 @@ const getData = async () => {
 const DigitalInterface = async () => {
   const data = await getData();
   return (
-    <main className="grid grid-cols-1 sm:grid-cols-3 gap-[10px]">
+    <main className="grid grid-cols-1 sm:grid-cols-3 gap-[10px] mt-[15px] sm:mt-[10px]">
       {data.map(
         (item: {
           title: string;
@@ -30,10 +30,15 @@ const DigitalInterface = async () => {
           <Link
             href={"/" + item.category + "/" + item.slug}
             key={item.title}
-            className="relative aspect-[2000/1265] hover:scale-95 transition-transform duration-500 ease-in-out"
+            className="relative aspect-[2000/1265] overflow-hidden"
           >
             <div>{item.title}</div>
-            <Image src={getImageUrl(item.cover)} alt={item.title} fill />
+            <Image
+              src={getImageUrl(item.cover)}
+              alt={item.title}
+              fill
+              className="hover:scale-105 transition-transform duration-500 ease-in-out"
+            />
           </Link>
         )
       )}

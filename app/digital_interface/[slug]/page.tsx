@@ -34,26 +34,26 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <article>
-      <header className="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-2 text-sm">
-        <div className="flex">
-          <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+      <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[10px] sm:h-[114px] py-4 sm:py-2">
+        <div className="col-span-1 flex">
+          <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
           <h3 className="col-span-1">{title}</h3>
         </div>
 
         <div className="col-span-2">
           <div className="flex">
-            <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+            <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
             <p>{type}</p>
           </div>
           {client && (
             <div className="flex">
-              <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+              <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
               <p>{client}</p>
             </div>
           )}
           {agency && (
             <div className="flex">
-              <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+              <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
               <p>{agency}</p>
             </div>
           )}
@@ -62,7 +62,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
               <Divider className="my-[10px] sm:my-[6px]" />
               {awards.map((award: string, index: number) => (
                 <div key={index} className="flex">
-                  <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
+                  <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
                   <p>{award}</p>
                 </div>
               ))}
@@ -71,15 +71,15 @@ const page = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         {/* project description for pc view */}
-        <div className="hidden sm:block sm:col-span-3 prose prose-p:text-sm max-h-28 overflow-y-scroll">
+        <div className="hidden sm:block col-span-3 col-start-4 col-end-7 prose prose-p:text-xs max-h-28 overflow-y-scroll">
           <PortableText value={desc} />
         </div>
       </header>
 
-      <Divider className="my-[15px] sm:my-[10px]" />
+      <Divider className="mb-[15px] sm:mb-[10px]" />
 
       {/* images */}
-      <figure className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <figure className="grid grid-cols-1 sm:grid-cols-2 gap-[10px]">
         {videos?.length > 0 &&
           videos.map(
             (item: { video: string; thumbnail: string }, index: number) => (
@@ -102,7 +102,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
       {/* project description for phone view */}
       <section>
-        <div className="sm:hidden my-10 prose prose-p:text-sm">
+        <div className="sm:hidden my-10 mx-4 prose prose-p:text-xs">
           <PortableText value={desc} />
         </div>
       </section>

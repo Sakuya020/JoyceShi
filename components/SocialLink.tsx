@@ -1,22 +1,22 @@
 "use client";
 
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { Button } from "./ui/button";
 
 const SocialLink = ({ name, href }: { name: string; href: string }) => {
   return (
-    <Link
+    <a
       key={name}
       href={href}
-      className="block"
-      onClick={(e) => e.stopPropagation()}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-xs block mb-1"
     >
-      <Button className="group underline h-8">
-        <ArrowRightIcon className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" />
+      <Button className="group underline">
+        <ArrowRightIcon className="w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300" />
         {name}
       </Button>
-    </Link>
+    </a>
   );
 };
 

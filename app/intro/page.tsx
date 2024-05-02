@@ -33,43 +33,39 @@ const socials = [
 const Intro = async () => {
   const data = await getData();
   return (
-    <>
-      <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 text-sm">
-        {data.map(({ title, desc }: { title: string; desc: any }) => (
-          <>
-            {/* desktop view */}
-            <section className="hidden sm:block" key={title}>
-              <h1 className="flex items-center">
-                <ArrowRightIcon className="w-4 h-4 mr-2 rotate-45" />
-                {title}
-              </h1>
-              <Divider className="mt-[10px] mb-5" />
-              <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-sm prose-a:font-normal">
-                <PortableText value={desc} />
-              </div>
-            </section>
+    <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4">
+      {data.map(({ title, desc }: { title: string; desc: any }) => (
+        <>
+          {/* desktop view */}
+          <section className="hidden sm:block" key={title}>
+            <h1 className="flex items-center h-[30px]">
+              <ArrowRightIcon className="w-3 h-3 mr-2 rotate-45 flex-shrink-0" />
+              {title}
+            </h1>
+            <Divider className="mb-5" />
+            <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-xs prose-a:font-normal">
+              <PortableText value={desc} />
+            </div>
+          </section>
 
-            {/* phone view */}
-            <section className="sm:hidden">
-              <Accordion title={title}>
-                <PortableText value={desc} />
-              </Accordion>
-              <Divider className="my-4" />
-            </section>
-          </>
-        ))}
-        <section className="sm:hidden">
-          <Accordion title="Contacts">
-            {socials.map(({ name, href }) => (
-              <SocialLink key={name} name={name} href={href} />
-            ))}
-          </Accordion>
+          {/* phone view */}
+          <section className="sm:hidden py-[15px] border-b border-foreground">
+            <Accordion title={title}>
+              <PortableText value={desc} />
+            </Accordion>
+          </section>
+        </>
+      ))}
 
-          <Divider className="my-4 col-span-3" />
-        </section>
-      </article>
-      <div className="h-[1px] w-full bg-foreground mb-4 mt-52 sm:mt-0 hidden sm:block"></div>
-    </>
+      <section className="sm:hidden py-[15px] border-b border-foreground">
+        <Accordion title="Contacts">
+          {socials.map(({ name, href }) => (
+            <SocialLink key={name} name={name} href={href} />
+          ))}
+        </Accordion>
+      </section>
+      <div className="h-[340px] sm:h-0" />
+    </article>
   );
 };
 
