@@ -33,11 +33,11 @@ const socials = [
 const Intro = async () => {
   const data = await getData();
   return (
-    <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4">
+    <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4 h-[100vh] overflow-hidden">
       {data.map(({ title, desc }: { title: string; desc: any }) => (
         <>
           {/* desktop view */}
-          <section className="hidden sm:block" key={title}>
+          <section className="hidden sm:block overflow-y-scroll" key={title}>
             <h1 className="flex items-center h-[30px]">
               <ArrowRightIcon className="w-3 h-3 mr-2 rotate-45 flex-shrink-0" />
               {title}
