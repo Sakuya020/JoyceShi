@@ -1,7 +1,5 @@
 import { client } from "@/lib/sanity";
-import { getImageUrl } from "@/lib/utils";
-import Link from "next/link";
-import Image from "next/image";
+import ImgWithLink from "@/components/ImgWithLink";
 
 const getData = async () => {
   const query = `
@@ -27,18 +25,7 @@ const DigitalInterface = async () => {
           slug: string;
           cover: string;
         }) => (
-          <Link
-            href={"/" + item.category + "/" + item.slug}
-            key={item.title}
-            className="relative aspect-[2000/1265] overflow-hidden"
-          >
-            <Image
-              src={getImageUrl(item.cover)}
-              alt={item.title}
-              fill
-              className="active:scale-105 sm:hover:scale-105 transition-transform duration-500 ease-in-out"
-            />
-          </Link>
+          <ImgWithLink item={item} key={item.title} />
         )
       )}
     </main>

@@ -10,11 +10,7 @@ export function getImageUrl(url: string) {
   const regex = new RegExp("image-(.*?)-" + extension);
   const fileName = url.match(regex);
   return (
-    `https://cdn.sanity.io/images/` +
-    process.env.SANITY_PROJECT_ID +
-    "/" +
-    process.env.SANITY_DATASET +
-    "/" +
+    `https://cdn.sanity.io/images/u4y5om9m/production/` +
     fileName![1] +
     "." +
     extension

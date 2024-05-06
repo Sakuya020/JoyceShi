@@ -1,4 +1,5 @@
 import Divider from "@/components/Divider";
+import Img from "@/components/Img";
 import VideoPlayer from "@/components/VideoPlayer";
 import { client } from "@/lib/sanity";
 import { getImageInfo } from "@/lib/utils";
@@ -88,15 +89,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           )}
         {images.map((item: { image: string }, index: number) => {
           const { imgUrl, ratio } = getImageInfo(item.image);
-          return (
-            <div
-              key={index}
-              className={`relative w-full`}
-              style={{ aspectRatio: ratio }}
-            >
-              <Image src={imgUrl} alt={title + "_" + (index + 1)} fill />
-            </div>
-          );
+          return <Img key={index} item={{ ratio, imgUrl, title, index }} />;
         })}
       </figure>
 
