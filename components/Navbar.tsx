@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Divider from "./Divider";
 import NavbarPhone from "./NavbarPhone";
+import AnimatedText from "./AnimatedText";
 
 const routes = [
   { name: "Homepage", href: "/", value: "homepage" },
@@ -66,7 +67,7 @@ const Navbar = () => {
                   pathname === "/intro" && "rotate-45"
                 )}
               />
-              Joyce Shi
+              <AnimatedText text="Joyce Shi" />
             </Button>
           </Link>
 
