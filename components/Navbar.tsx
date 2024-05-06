@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Divider from "./Divider";
 import NavbarPhone from "./NavbarPhone";
 import AnimatedText from "./AnimatedText";
+import AnimatedDivider from "./AnimatedDivider";
 
 const routes = [
   { name: "Homepage", href: "/", value: "homepage" },
@@ -127,7 +128,7 @@ const Navbar = () => {
           {/* Homepage, Printed Matter, Digital Interface for phone view */}
           <NavbarPhone />
         </div>
-        <Divider />
+        <AnimatedDivider />
       </nav>
       <div className="h-[94px] sm:h-[157px]"></div>
     </>
