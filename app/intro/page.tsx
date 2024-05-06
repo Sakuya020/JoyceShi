@@ -33,16 +33,19 @@ const socials = [
 const Intro = async () => {
   const data = await getData();
   return (
-    <article className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4 h-[100vh] overflow-hidden">
+    <article className="grid grid-cols-1 sm:grid-cols-3 gap-x-[10px] sm:h-screen">
       {data.map(({ title, desc }: { title: string; desc: any }) => (
         <>
           {/* desktop view */}
           <section className="hidden sm:block overflow-y-scroll" key={title}>
-            <h1 className="flex items-center h-[30px]">
-              <ArrowRightIcon className="w-3 h-3 mr-2 rotate-45 flex-shrink-0" />
-              {title}
-            </h1>
-            <Divider className="mb-5" />
+            <div className="fixed h-[30px] w-full bg-background">
+              <div className="flex items-center h-full">
+                <ArrowRightIcon className="w-3 h-3 mr-2 rotate-45 flex-shrink-0" />
+                <h1>{title}</h1>
+              </div>
+              <Divider className="w-[calc(33.33%-12px)]" />
+            </div>
+            <div className="h-[30px] mb-5"></div>
             <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-xs prose-a:font-normal">
               <PortableText value={desc} />
             </div>
@@ -64,7 +67,7 @@ const Intro = async () => {
           ))}
         </Accordion>
       </section>
-      <div className="h-[340px] sm:h-0" />
+      <div className="mt-[340px] sm:mt-0" />
     </article>
   );
 };

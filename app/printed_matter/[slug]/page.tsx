@@ -34,10 +34,10 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <article>
-      <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[10px] sm:h-[114px] py-4 sm:py-2">
+      <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px] sm:h-[114px] py-4 sm:py-2">
         <div className="col-span-1 flex">
           <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
-          <h3 className="col-span-1">{title}</h3>
+          <h3 className="col-span-1 text-wrap pr-1">{title}</h3>
         </div>
 
         <div className="col-span-2">

@@ -24,7 +24,7 @@ const socials = [
     name: "instagram",
     href: "https://www.instagram.com/gloamaxis/?igshid=YmMyMTA2M2Y%3D",
   },
-  { name: "joyceshidesign@gmail.com", href: "mailto:joyceshidesign@gmail.com" },
+  { name: "email", href: "mailto:joyceshidesign@gmail.com" },
   {
     name: "resume",
     href: "https://drive.google.com/file/d/1PItNqPCMpBB5bFmDLqDpwux05vBWqp4V/view",
@@ -41,8 +41,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full pt-4 sm:pt-[10px] pr-8 sm:pr-5 sm:mb-0 bg-background z-10">
-        <div className="w-full h-[110px] sm:h-[167px] grid grid-cols-3 sm:grid-cols-6 sm:gap-[10px]">
+      <nav className="fixed top-0 w-[calc(100%-32px)] sm:w-[calc(100%-20px)] pt-4 sm:pt-[10px] sm:mb-0 bg-background z-10">
+        <div className="w-full h-[94px] sm:h-[157px] grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px]">
           {/* Joyce Shi */}
           <Link
             href="/intro"
@@ -62,7 +62,7 @@ const Navbar = () => {
             >
               <ArrowRightIcon
                 className={cn(
-                  "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                  "w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
                   pathname === "/intro" && "rotate-45"
                 )}
               />
@@ -80,7 +80,7 @@ const Navbar = () => {
                 rel="noopener noreferrer"
               >
                 <Button className="group underline">
-                  <ArrowRightIcon className="w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300" />
+                  <ArrowRightIcon className="w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300" />
                   {name}
                 </Button>
               </a>
@@ -88,7 +88,7 @@ const Navbar = () => {
           </li>
 
           {/* Homepage, Printed Matter, Digital Interface for pc view */}
-          <li className="hidden sm:flex col-span-1 col-start-6 col-end-7 flex-col -space-y-2">
+          <li className="hidden sm:flex col-span-1 col-start-6 col-end-7 flex-col -space-y-[10px]">
             {routes.map(({ name, href, value }) => (
               <Link
                 key={name}
@@ -103,7 +103,7 @@ const Navbar = () => {
               >
                 <Button
                   className={cn(
-                    "group",
+                    "group h-max items-start pt-1",
                     pathname.includes(value) && "text-primary-foreground",
                     pathname === "/" &&
                       value === "homepage" &&
@@ -112,12 +112,12 @@ const Navbar = () => {
                 >
                   <ArrowRightIcon
                     className={cn(
-                      "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                      "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
                       pathname.includes(value) && "rotate-45",
                       pathname === "/" && value === "homepage" && "rotate-45"
                     )}
                   />
-                  {name}
+                  <div className="text-start text-wrap">{name}</div>
                 </Button>
               </Link>
             ))}
@@ -128,7 +128,7 @@ const Navbar = () => {
         </div>
         <Divider />
       </nav>
-      <div className="h-[110px] sm:h-[167px]"></div>
+      <div className="h-[94px] sm:h-[157px]"></div>
     </>
   );
 };

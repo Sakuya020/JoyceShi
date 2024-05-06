@@ -16,7 +16,7 @@ const NavbarPhone = () => {
         >
           <ArrowRightIcon
             className={cn(
-              "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+              "w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
               pathname === "/" && "rotate-45"
             )}
           />
@@ -24,7 +24,7 @@ const NavbarPhone = () => {
         </Button>
       </Link>
 
-      <li className="sm:hidden col-span-1 flex flex-col -space-y-1">
+      <li className="sm:hidden col-span-1 flex flex-col -space-y-3">
         <Link
           href={"/printed_matter"}
           onClick={(e) => {
@@ -36,17 +36,17 @@ const NavbarPhone = () => {
         >
           <Button
             className={cn(
-              "group justify-start",
+              "group h-max items-start pt-1",
               pathname.includes("/printed_matter") && "text-primary-foreground"
             )}
           >
             <ArrowRightIcon
               className={cn(
-                "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
                 pathname === "/printed_matter" && "rotate-45"
               )}
             />
-            Printed Matter
+            <div className="text-start text-wrap">Printed Matter</div>
           </Button>
         </Link>
 
@@ -61,19 +61,18 @@ const NavbarPhone = () => {
         >
           <Button
             className={cn(
-              "group text-wrap flex-wrap justify-start",
+              "group h-max items-start",
               pathname.includes("/digital_interface") &&
                 "text-primary-foreground"
             )}
           >
             <ArrowRightIcon
               className={cn(
-                "w-3 h-3 mr-2 group-hover:rotate-45 transition-transform duration-300",
+                "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
                 pathname === "/digital_interface" && "rotate-45"
               )}
             />
-            <div>Digital</div>
-            <div className="ml-[19px]">Interface</div>
+            <div className="text-start text-wrap">Digital Interface</div>
           </Button>
         </Link>
       </li>
