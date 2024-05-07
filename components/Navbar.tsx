@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import Divider from "./Divider";
 import NavbarPhone from "./NavbarPhone";
 import AnimatedText from "./AnimatedText";
 import AnimatedDivider from "./AnimatedDivider";
@@ -26,7 +25,11 @@ const socials = [
     name: "instagram",
     href: "https://www.instagram.com/gloamaxis/?igshid=YmMyMTA2M2Y%3D",
   },
-  { name: "email", href: "mailto:joyceshidesign@gmail.com" },
+  {
+    name: "joyceshidesign@gmail.com",
+    href: "mailto:joyceshidesign@gmail.com",
+    alias: "email",
+  },
   {
     name: "resume",
     href: "https://drive.google.com/file/d/1PItNqPCMpBB5bFmDLqDpwux05vBWqp4V/view",
@@ -43,7 +46,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-[calc(100%-32px)] sm:w-[calc(100%-20px)] pt-4 sm:pt-[10px] sm:mb-0 bg-background z-10">
+      <nav className="fixed top-0 w-[calc(100%-32px)] sm:w-[calc(100%-20px)] pt-4 sm:pt-[9px] sm:mb-0 bg-background z-10">
         <div className="w-full h-[94px] sm:h-[157px] grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px]">
           {/* Joyce Shi */}
           <Link
@@ -74,7 +77,7 @@ const Navbar = () => {
 
           {/* social links */}
           <li className="hidden col-span-1 col-start-5 col-end-6 sm:flex flex-col -space-y-2">
-            {socials.map(({ name, href }) => (
+            {socials.map(({ name, href, alias }) => (
               <a
                 key={name}
                 href={href}
@@ -83,14 +86,15 @@ const Navbar = () => {
               >
                 <Button className="group underline">
                   <ArrowRightIcon className="w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300" />
-                  {name}
+                  <span className={cn(alias && "hidden xl:block")}>{name}</span>
+                  {alias && <span className="block xl:hidden">{alias}</span>}
                 </Button>
               </a>
             ))}
           </li>
 
           {/* Homepage, Printed Matter, Digital Interface for pc view */}
-          <li className="hidden sm:flex col-span-1 col-start-6 col-end-7 flex-col -space-y-[10px]">
+          <li className="hidden sm:flex col-span-1 col-start-6 col-end-7 flex-col -space-y-[11px]">
             {routes.map(({ name, href, value }) => (
               <Link
                 key={name}

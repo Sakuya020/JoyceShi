@@ -28,10 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          "px-4 pt-4 sm:px-[10px] sm:pt-[10px]",
-          fontSans.className
-        )}
+        className={cn("px-4 pt-4 sm:px-[10px] sm:pt-[9px]", fontSans.className)}
       >
         <Navbar />
         {children}
