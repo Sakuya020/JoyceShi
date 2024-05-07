@@ -1,9 +1,9 @@
 import Accordion from "@/components/Accordion";
 import Divider from "@/components/Divider";
+import MyPortableText from "@/components/MyPortableText";
 import SocialLink from "@/components/SocialLink";
 import { client } from "@/lib/sanity";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
-import { PortableText } from "next-sanity";
 
 const getData = async () => {
   const query = `
@@ -47,14 +47,14 @@ const Intro = async () => {
             </div>
             <div className="h-[30px] mb-5"></div>
             <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-xs prose-a:font-normal">
-              <PortableText value={desc} />
+              <MyPortableText value={desc} />
             </div>
           </section>
 
           {/* phone view */}
           <section className="sm:hidden py-[15px] border-b border-foreground">
             <Accordion title={title}>
-              <PortableText value={desc} />
+              <MyPortableText value={desc} />
             </Accordion>
           </section>
         </>
@@ -67,7 +67,7 @@ const Intro = async () => {
           ))}
         </Accordion>
       </section>
-      <div className="mt-[340px] sm:mt-0" />
+      {/* <div className="mt-16 sm:mt-0" /> */}
     </article>
   );
 };
