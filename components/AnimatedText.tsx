@@ -1,4 +1,4 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const animation = {
   hidden: { opacity: 0 },
@@ -13,7 +13,7 @@ const AnimatedText = ({ text }: { text: string }) => {
       <motion.span
         initial="hidden"
         animate="visible"
-        transition={{ staggerChildren: 0.07 }}
+        transition={{ staggerChildren: 0.05 }}
       >
         {text.split("").map((char, index) => (
           <motion.span key={index} variants={animation}>

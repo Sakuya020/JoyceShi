@@ -14,7 +14,8 @@ const Img = ({
         src={imgUrl}
         alt={title + "_" + (index + 1)}
         fill
-        className=" transition-opacity opacity-0 duration-200 ease-in-out"
+        className="transition-opacity opacity-0 duration-300 ease-linear"
+        style={{ transitionDelay: `${400 + index * 200}ms` }}
         onLoadingComplete={(image) => image.classList.remove("opacity-0")}
       />
     </div>

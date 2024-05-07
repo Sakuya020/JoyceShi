@@ -46,13 +46,13 @@ const Intro = async () => {
               <Divider className="w-[calc(33.33%-12px)]" />
             </div>
             <div className="h-[30px] mb-5"></div>
-            <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-xs prose-a:font-normal">
+            <div className="min-h-screen px-[15px] border-l border-foreground prose prose-p:text-xs prose-a:font-normal animate-fade">
               <MyPortableText value={desc} />
             </div>
           </section>
 
           {/* phone view */}
-          <section className="sm:hidden py-[15px] border-b border-foreground">
+          <section className="sm:hidden py-[15px] border-b border-foreground animate-fade">
             <Accordion title={title}>
               <MyPortableText value={desc} />
             </Accordion>
@@ -60,7 +60,7 @@ const Intro = async () => {
         </>
       ))}
 
-      <section className="sm:hidden py-[15px] border-b border-foreground">
+      <section className="sm:hidden py-[15px] border-b border-foreground animate-fade">
         <Accordion title="Contacts">
           {socials.map(({ name, href }) => (
             <SocialLink key={name} name={name} href={href} />

@@ -5,7 +5,6 @@ import { client } from "@/lib/sanity";
 import { getImageInfo } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { PortableText } from "next-sanity";
-import Image from "next/image";
 
 const getData = async (slug: string) => {
   const query = `
@@ -35,7 +34,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <article>
-      <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px] sm:h-[114px] py-4 sm:py-2">
+      <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px] sm:h-[114px] py-4 sm:py-2 animate-fade">
         <div className="col-span-1 flex">
           <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
           <h3 className="col-span-1 pr-1">{title}</h3>

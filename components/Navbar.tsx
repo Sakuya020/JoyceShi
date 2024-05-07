@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import NavbarPhone from "./NavbarPhone";
 import AnimatedText from "./AnimatedText";
 import AnimatedDivider from "./AnimatedDivider";
+import { motion } from "framer-motion";
 
 const routes = [
   { name: "Homepage", href: "/", value: "homepage" },
@@ -64,6 +65,9 @@ const Navbar = () => {
                 "group",
                 pathname === "/intro" && "text-primary-foreground"
               )}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
             >
               <ArrowRightIcon
                 className={cn(
@@ -78,18 +82,22 @@ const Navbar = () => {
           {/* social links */}
           <li className="hidden col-span-1 col-start-5 col-end-6 sm:flex flex-col -space-y-2">
             {socials.map(({ name, href, alias }) => (
-              <a
+              <motion.a
                 key={name}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, ease: "easeInOut" }}
               >
                 <Button className="group underline">
                   <ArrowRightIcon className="w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300" />
                   <span className={cn(alias && "hidden xl:block")}>{name}</span>
                   {alias && <span className="block xl:hidden">{alias}</span>}
                 </Button>
-              </a>
+              </motion.a>
             ))}
           </li>
 
@@ -115,6 +123,11 @@ const Navbar = () => {
                       value === "homepage" &&
                       "text-primary-foreground"
                   )}
+                  key={name}
+                  initial={{ opacity: 0 }}
+                  exit={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7, ease: "easeInOut" }}
                 >
                   <ArrowRightIcon
                     className={cn(

@@ -10,7 +10,8 @@ const AnimatedDivider = () => {
         // opacity: [0, 1],
       }}
       transition={{
-        duration: 0.7,
+        delay: 0.75,
+        duration: 0.6,
       }}
     ></motion.div>
   );

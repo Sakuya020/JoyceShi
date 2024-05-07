@@ -19,13 +19,16 @@ const DigitalInterface = async () => {
   return (
     <main className="grid grid-cols-1 sm:grid-cols-3 gap-[5px] sm:gap-[10px] mt-4 sm:mt-[10px]">
       {data.map(
-        (item: {
-          title: string;
-          category: string;
-          slug: string;
-          cover: string;
-        }) => (
-          <ImgWithLink item={item} key={item.title} />
+        (
+          item: {
+            title: string;
+            category: string;
+            slug: string;
+            cover: string;
+          },
+          index: number
+        ) => (
+          <ImgWithLink item={item} key={item.title} index={index} />
         )
       )}
     </main>

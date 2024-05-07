@@ -13,6 +13,11 @@ const NavbarPhone = () => {
       <Link key={"homepage"} href={"/"} className="sm:hidden col-span-1">
         <Button
           className={cn("group", pathname === "/" && "text-primary-foreground")}
+          key={"Homepage"}
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, ease: "easeInOut" }}
         >
           <ArrowRightIcon
             className={cn(
@@ -39,6 +44,11 @@ const NavbarPhone = () => {
               "group h-max items-start pt-1",
               pathname.includes("/printed_matter") && "text-primary-foreground"
             )}
+            key={"Printed Matter"}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, ease: "easeInOut" }}
           >
             <ArrowRightIcon
               className={cn(
@@ -65,6 +75,11 @@ const NavbarPhone = () => {
               pathname.includes("/digital_interface") &&
                 "text-primary-foreground"
             )}
+            key={"Digital Interface"}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, ease: "easeInOut" }}
           >
             <ArrowRightIcon
               className={cn(
