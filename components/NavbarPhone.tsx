@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import AnimatedText from "./AnimatedText";
 
 const NavbarPhone = () => {
   const pathname = usePathname();
@@ -17,7 +18,7 @@ const NavbarPhone = () => {
           initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, ease: "easeInOut" }}
+          // transition={{ delay: 0.5, ease: "easeInOut" }}
         >
           <ArrowRightIcon
             className={cn(
@@ -25,7 +26,7 @@ const NavbarPhone = () => {
               pathname === "/" && "rotate-45"
             )}
           />
-          Homepage
+          <AnimatedText text={"Homepage"} />
         </Button>
       </Link>
 
@@ -48,7 +49,7 @@ const NavbarPhone = () => {
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, ease: "easeInOut" }}
+            // transition={{ delay: 0.7, ease: "easeInOut" }}
           >
             <ArrowRightIcon
               className={cn(
@@ -56,7 +57,9 @@ const NavbarPhone = () => {
                 pathname === "/printed_matter" && "rotate-45"
               )}
             />
-            <div className="text-start text-wrap">Printed Matter</div>
+            <div className="text-start text-wrap">
+              <AnimatedText text={"Printed Matter"} />
+            </div>
           </Button>
         </Link>
 
@@ -79,7 +82,7 @@ const NavbarPhone = () => {
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, ease: "easeInOut" }}
+            // transition={{ delay: 0.7, ease: "easeInOut" }}
           >
             <ArrowRightIcon
               className={cn(
@@ -87,7 +90,9 @@ const NavbarPhone = () => {
                 pathname === "/digital_interface" && "rotate-45"
               )}
             />
-            <div className="text-start text-wrap">Digital Interface</div>
+            <div className="text-start text-wrap">
+              <AnimatedText text={"Digital Interface"} />
+            </div>
           </Button>
         </Link>
       </li>

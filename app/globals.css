@@ -87,3 +87,7 @@
     border-radius: 3px;
   }
 }
+
+.ReactCollapse--collapse {
+  transition: height 400ms;
+}

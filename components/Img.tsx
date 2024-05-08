@@ -8,6 +8,7 @@ const Img = ({
   item: { ratio: number; imgUrl: string; title: string; index: number };
 }) => {
   const { ratio, imgUrl, title, index } = item;
+
   return (
     <div className={`relative w-full`} style={{ aspectRatio: ratio }}>
       <Image

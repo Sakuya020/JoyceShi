@@ -90,12 +90,18 @@ const Navbar = () => {
                 initial={{ opacity: 0 }}
                 exit={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, ease: "easeInOut" }}
+                // transition={{ delay: 0.5, ease: "easeInOut" }}
               >
                 <Button className="group underline">
                   <ArrowRightIcon className="w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300" />
-                  <span className={cn(alias && "hidden xl:block")}>{name}</span>
-                  {alias && <span className="block xl:hidden">{alias}</span>}
+                  <span className={cn(alias && "hidden xl:block")}>
+                    <AnimatedText text={name} />
+                  </span>
+                  {alias && (
+                    <span className="block xl:hidden">
+                      <AnimatedText text={alias} />
+                    </span>
+                  )}
                 </Button>
               </motion.a>
             ))}
@@ -127,7 +133,7 @@ const Navbar = () => {
                   initial={{ opacity: 0 }}
                   exit={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.7, ease: "easeInOut" }}
+                  // transition={{ delay: 0.7, ease: "easeInOut" }}
                 >
                   <ArrowRightIcon
                     className={cn(
@@ -136,7 +142,9 @@ const Navbar = () => {
                       pathname === "/" && value === "homepage" && "rotate-45"
                     )}
                   />
-                  <div className="text-start text-wrap">{name}</div>
+                  <div className="text-start text-wrap">
+                    <AnimatedText text={name} />
+                  </div>
                 </Button>
               </Link>
             ))}

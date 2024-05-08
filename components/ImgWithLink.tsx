@@ -30,13 +30,13 @@ const ImgWithLink = ({
           fill
           className={`active:scale-105 sm:hover:scale-105 transition-all duration-300 ease-linear opacity-0`}
           style={{
-            transitionDelay: `${400 + index * 200}ms`,
+            transitionDelay: `${300 + index * 200}ms`,
           }}
           onLoadingComplete={(image) => {
             image.classList.remove(`opacity-0`);
             setTimeout(() => {
               image.style.transitionDelay = "0ms";
-            }, 850 + index * 200);
+            }, 300 + index * 200);
           }}
         />
       ) : (

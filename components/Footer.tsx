@@ -10,7 +10,7 @@ const Footer = () => {
       </div>
       {/* footer for phone view */}
       <div className="sm:hidden">
-        <div className="h-16"></div>
+        <div className="h-[63px]"></div>
         <div className="fixed bottom-0 flex pt-[15px] h-16 w-[calc(100vw-32px)] bg-background border-t border-foreground">
           <p>© Joyce Shi 2016-2024</p>
         </div>

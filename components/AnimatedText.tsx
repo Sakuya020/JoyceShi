@@ -13,7 +13,7 @@ const AnimatedText = ({ text }: { text: string }) => {
       <motion.span
         initial="hidden"
         animate="visible"
-        transition={{ staggerChildren: 0.05 }}
+        transition={{ staggerChildren: 0.03 }}
       >
         {text.split("").map((char, index) => (
           <motion.span key={index} variants={animation}>

@@ -52,7 +52,7 @@ const Intro = async () => {
           </section>
 
           {/* phone view */}
-          <section className="sm:hidden py-[15px] border-b border-foreground animate-fade">
+          <section className="sm:hidden animate-fade">
             <Accordion title={title}>
               <MyPortableText value={desc} />
             </Accordion>
@@ -60,14 +60,13 @@ const Intro = async () => {
         </>
       ))}
 
-      <section className="sm:hidden py-[15px] border-b border-foreground animate-fade">
+      <section className="sm:hidden animate-fade">
         <Accordion title="Contacts">
           {socials.map(({ name, href }) => (
             <SocialLink key={name} name={name} href={href} />
           ))}
         </Accordion>
       </section>
-      {/* <div className="mt-16 sm:mt-0" /> */}
     </article>
   );
 };

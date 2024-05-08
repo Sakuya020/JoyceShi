@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { Collapse } from "react-collapse";
 
 interface AccordionProps {
   children: React.ReactNode;
@@ -16,12 +17,12 @@ const Accordion = ({ children, title }: AccordionProps) => {
 
   return (
     <div
-      className="grid grid-cols-12 gap-x-[5px] items-start"
+      className="transition-all duration-1000 grid grid-cols-12 gap-x-[5px] py-[15px] items-start border-b border-foreground"
       onClick={() => {
         setAccordionOpen(!accordionOpen);
       }}
     >
-      <p className="col-span-3 flex border-foreground text-wrap items-start">
+      <p className="col-span-3 flex text-wrap items-start">
         <ArrowRightIcon
           className={cn(
             "w-3 h-3 mr-[6px] mt-[2px] transition-all duration-200 ease-in-out flex-shrink-0",
@@ -33,25 +34,20 @@ const Accordion = ({ children, title }: AccordionProps) => {
       <div className="col-span-1 h-full flex justify-end mr-4">
         <hr className="w-[1px] bg-foreground h-full" />
       </div>
-      <div className="col-span-8 border-foreground">
-        {/* expand */}
-        <div
-          className={cn(
-            "transition-all duration-100 ease-linear overflow-hidden prose prose-p:text-xs prose-a:font-normal",
-            accordionOpen ? "h-min opacity-100" : "h-0 opacity-0"
-          )}
-        >
-          {children}
-        </div>
-        {/* collapse */}
+      <div className="col-span-8">
         <p
           className={cn(
             "border-foreground",
-            !accordionOpen ? "h-min opacity-100" : "h-0 opacity-0"
+            !accordionOpen ? "h-min" : "h-0 opacity-0"
           )}
         >
           Click to view
         </p>
+        <Collapse isOpened={accordionOpen}>
+          <div className="prose prose-p:text-xs prose-a:font-normal">
+            {children}
+          </div>
+        </Collapse>
       </div>
     </div>
   );
