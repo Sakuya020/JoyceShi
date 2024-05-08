@@ -17,6 +17,11 @@ export default {
       },
     },
     {
+      name: 'date',
+      title: 'Date',
+      type: 'date',
+    },
+    {
       name: 'category',
       title: 'Category',
       type: 'string',

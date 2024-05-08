@@ -28,8 +28,10 @@ const ImgWithLink = ({
           src={getImageUrl(item.cover)}
           alt={item.title}
           fill
-          className={`active:scale-105 sm:hover:scale-105 transition-all duration-500 ease-linear opacity-0`}
-          style={{ transitionDelay: `${900 + index * 200}ms` }}
+          className={`active:scale-105 sm:hover:scale-105 transition-all duration-300 ease-linear opacity-0`}
+          style={{
+            transitionDelay: `${400 + index * 200}ms`,
+          }}
           onLoadingComplete={(image) => {
             image.classList.remove(`opacity-0`);
             setTimeout(() => {
@@ -42,7 +44,7 @@ const ImgWithLink = ({
           src={getImageUrl(item.cover)}
           alt={item.title}
           fill
-          className={`active:scale-105 sm:hover:scale-105 transition-all duration-500 ease-linear opacity-0`}
+          className={`active:scale-105 sm:hover:scale-105 transition-all duration-300 ease-linear opacity-0`}
           style={{ transitionDelay: `${index * 200}ms` }}
           onLoadingComplete={(image) => {
             image.classList.remove(`opacity-0`);

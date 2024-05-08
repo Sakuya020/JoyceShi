@@ -3,7 +3,7 @@ import ImgWithLink from "@/components/ImgWithLink";
 
 const getData = async () => {
   const query = `
-  *[_type == 'portfolio' && category == "digital_interface"]{
+  *[_type == 'portfolio' && category == "digital_interface"] | order(date desc) {
     title,
       category,
       'cover':cover.asset._ref,
