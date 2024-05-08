@@ -17,9 +17,9 @@ export default {
       },
     },
     {
-      name: 'date',
-      title: 'Date',
-      type: 'date',
+      name: 'order',
+      title: 'Order',
+      type: 'number',
     },
     {
       name: 'category',
