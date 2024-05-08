@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const fontSans = FontSans({
   weight: ["300", "400", "500"],
@@ -27,6 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ScrollToTop />
       <body
         className={cn("px-4 pt-4 sm:px-[10px] sm:pt-[9px]", fontSans.className)}
       >
