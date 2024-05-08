@@ -61,7 +61,7 @@ const Intro = async () => {
       ))}
 
       <section className="sm:hidden animate-fade">
-        <Accordion title="Contacts">
+        <Accordion title="Contacts" className="-mt-1">
           {socials.map(({ name, href }) => (
             <SocialLink key={name} name={name} href={href} />
           ))}

@@ -22,6 +22,7 @@ const ImgWithLink = ({
     <Link
       href={"/" + item.category + "/" + item.slug}
       className="relative aspect-[2000/1265] overflow-hidden"
+      scroll={false}
     >
       {pathname === "/" ? (
         <Image

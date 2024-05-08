@@ -116,10 +116,11 @@ const Navbar = () => {
                 onClick={(e) => {
                   if (pathname.includes(value)) {
                     e.preventDefault();
-                    router.push("/");
+                    router.push(`/${value}`);
                   }
                 }}
                 className="first:mb-[14px]"
+                scroll={false}
               >
                 <Button
                   className={cn(

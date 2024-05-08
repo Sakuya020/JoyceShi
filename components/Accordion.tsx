@@ -8,9 +8,10 @@ import { Collapse } from "react-collapse";
 interface AccordionProps {
   children: React.ReactNode;
   title: string;
+  className?: string;
 }
 
-const Accordion = ({ children, title }: AccordionProps) => {
+const Accordion = ({ children, title, className }: AccordionProps) => {
   const [accordionOpen, setAccordionOpen] = useState(
     title === "Intro" || title === "Contacts"
   );
@@ -44,7 +45,12 @@ const Accordion = ({ children, title }: AccordionProps) => {
           Click to view
         </p>
         <Collapse isOpened={accordionOpen}>
-          <div className="prose prose-p:text-xs prose-a:font-normal">
+          <div
+            className={cn(
+              "prose prose-p:text-xs prose-a:font-normal",
+              accordionOpen && className
+            )}
+          >
             {children}
           </div>
         </Collapse>

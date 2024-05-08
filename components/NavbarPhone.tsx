@@ -11,7 +11,12 @@ const NavbarPhone = () => {
 
   return (
     <>
-      <Link key={"homepage"} href={"/"} className="sm:hidden col-span-1">
+      <Link
+        key={"homepage"}
+        href={"/"}
+        className="sm:hidden col-span-1"
+        scroll={false}
+      >
         <Button
           className={cn("group", pathname === "/" && "text-primary-foreground")}
           key={"Homepage"}
@@ -36,9 +41,10 @@ const NavbarPhone = () => {
           onClick={(e) => {
             if (pathname.includes("/printed_matter")) {
               e.preventDefault();
-              router.push("/");
+              router.push("/printed_matter");
             }
           }}
+          scroll={false}
         >
           <Button
             className={cn(
@@ -54,7 +60,7 @@ const NavbarPhone = () => {
             <ArrowRightIcon
               className={cn(
                 "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
-                pathname === "/printed_matter" && "rotate-45"
+                pathname.includes("/printed_matter") && "rotate-45"
               )}
             />
             <div className="text-start text-wrap">
@@ -68,9 +74,10 @@ const NavbarPhone = () => {
           onClick={(e) => {
             if (pathname.includes("/digital_interface")) {
               e.preventDefault();
-              router.push("/");
+              router.push("/digital_interface");
             }
           }}
+          scroll={false}
         >
           <Button
             className={cn(
@@ -87,7 +94,7 @@ const NavbarPhone = () => {
             <ArrowRightIcon
               className={cn(
                 "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
-                pathname === "/digital_interface" && "rotate-45"
+                pathname.includes("/digital_interface") && "rotate-45"
               )}
             />
             <div className="text-start text-wrap">
