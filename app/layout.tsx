@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // revalidate data every hour
+export const revalidate = 1800; // revalidate data every hour
 
 export default function RootLayout({
   children,
