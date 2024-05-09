@@ -39,9 +39,9 @@ const NavbarPhone = () => {
         <Link
           href={"/printed_matter"}
           onClick={(e) => {
-            if (pathname.includes("/printed_matter")) {
+            if (pathname === "/printed_matter") {
               e.preventDefault();
-              router.push("/printed_matter");
+              router.push("/");
             }
           }}
           scroll={false}
@@ -72,9 +72,9 @@ const NavbarPhone = () => {
         <Link
           href={"/digital_interface"}
           onClick={(e) => {
-            if (pathname.includes("/digital_interface")) {
+            if (pathname === "/digital_interface") {
               e.preventDefault();
-              router.push("/digital_interface");
+              router.push("/");
             }
           }}
           scroll={false}

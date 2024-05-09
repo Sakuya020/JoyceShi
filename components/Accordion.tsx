@@ -39,7 +39,7 @@ const Accordion = ({ children, title, className }: AccordionProps) => {
         <p
           className={cn(
             "border-foreground",
-            !accordionOpen ? "h-min" : "h-0 opacity-0"
+            !accordionOpen ? "h-min opacity-100" : "h-0 opacity-0"
           )}
         >
           Click to view
@@ -48,7 +48,8 @@ const Accordion = ({ children, title, className }: AccordionProps) => {
           <div
             className={cn(
               "prose prose-p:text-xs prose-a:font-normal",
-              accordionOpen && className
+              accordionOpen && className,
+              accordionOpen ? "opacity-100" : "opacity-0"
             )}
           >
             {children}

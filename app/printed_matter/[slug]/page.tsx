@@ -79,7 +79,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
       <Divider className="mb-[15px] sm:mb-[10px]" />
 
       {/* images */}
-      <figure className="grid grid-cols-1 sm:grid-cols-2 gap-[10px]">
+      <figure className="grid grid-cols-1 sm:grid-cols-2 gap-[5px] sm:gap-[10px]">
         {videos?.length > 0 &&
           videos.map(
             (item: { video: string; thumbnail: string }, index: number) => (
