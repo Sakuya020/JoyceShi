@@ -114,9 +114,9 @@ const Navbar = () => {
                 key={name}
                 href={href}
                 onClick={(e) => {
-                  if (pathname.includes(value)) {
+                  if (pathname === href) {
                     e.preventDefault();
-                    router.push(`/${value}`);
+                    router.push(`/`);
                   }
                 }}
                 className="first:mb-[14px]"
