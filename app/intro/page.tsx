@@ -19,7 +19,7 @@ const socials = [
     name: "instagram",
     href: "https://www.instagram.com/gloamaxis/?igshid=YmMyMTA2M2Y%3D",
   },
-  { name: "email", href: "mailto:joyceshidesign@gmail.com" },
+  { name: "e-mail", href: "mailto:joyceshidesign@gmail.com" },
   {
     name: "resume",
     href: "https://drive.google.com/file/d/1PItNqPCMpBB5bFmDLqDpwux05vBWqp4V/view",
