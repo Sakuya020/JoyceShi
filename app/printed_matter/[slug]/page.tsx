@@ -40,7 +40,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <h3 className="col-span-1 pr-1">{title}</h3>
         </div>
 
-        <div className="col-span-2 sm:max-h-24">
+        <div className="col-span-2 sm:max-h-24 overflow-y-scroll">
           <div className="flex">
             <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
             <p>{type}</p>
