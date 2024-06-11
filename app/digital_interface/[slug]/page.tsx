@@ -40,7 +40,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <h3 className="col-span-1 pr-1">{title}</h3>
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-2 max-h-24">
           <div className="flex">
             <ArrowRightIcon className="w-3 h-3 mr-2 mt-[2px] rotate-45 flex-shrink-0" />
             <p>{type}</p>
@@ -71,7 +71,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         {/* project description for pc view */}
-        <div className="hidden sm:block col-span-3 col-start-4 col-end-7 prose prose-p:text-xs max-h-28 overflow-y-scroll">
+        <div className="hidden sm:block col-span-3 col-start-4 col-end-7 prose prose-p:text-xs max-h-24 overflow-y-scroll">
           <PortableText value={desc} />
         </div>
       </header>
