@@ -33,6 +33,7 @@ export default function RootLayout({
       <body
         className={cn("px-4 pt-4 sm:px-[10px] sm:pt-[9px]", fontSans.className)}
       >
+        <div className="fixed top-0 right-0 left-0 h-[110px] -index-1 bg-background"></div>
         <Navbar />
         {children}
         <Footer />
