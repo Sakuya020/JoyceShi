@@ -71,7 +71,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         {/* project description for pc view */}
-        <div className="hidden sm:block col-span-3 col-start-4 col-end-7 prose prose-p:text-xs max-h-24 overflow-y-scroll">
+        <div className="hidden sm:block col-span-3 col-start-4 col-end-7 prose-p:text-xs max-h-24 overflow-y-scroll">
           <PortableText value={desc} />
         </div>
       </header>
