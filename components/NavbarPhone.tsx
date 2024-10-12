@@ -11,29 +11,61 @@ const NavbarPhone = () => {
 
   return (
     <>
-      <Link
-        key={"homepage"}
-        href={"/"}
-        className="sm:hidden col-span-1"
-        scroll={false}
-      >
-        <Button
-          className={cn("group", pathname === "/" && "text-primary-foreground")}
-          key={"Homepage"}
-          initial={{ opacity: 0 }}
-          exit={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          // transition={{ delay: 0.5, ease: "easeInOut" }}
-        >
-          <ArrowRightIcon
+      <div className="sm:hidden col-span-1 flex flex-col -space-y-1">
+        <Link key={"homepage"} href={"/"} scroll={false}>
+          <Button
             className={cn(
-              "w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
-              pathname === "/" && "rotate-45"
+              "group",
+              pathname === "/" && "text-primary-foreground"
             )}
-          />
-          <AnimatedText text={"Homepage"} />
-        </Button>
-      </Link>
+            key={"Homepage"}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            // transition={{ delay: 0.5, ease: "easeInOut" }}
+          >
+            <ArrowRightIcon
+              className={cn(
+                "w-3 h-3 mr-2 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
+                pathname === "/" && "rotate-45"
+              )}
+            />
+            <AnimatedText text={"Homepage"} />
+          </Button>
+        </Link>
+        <Link
+          href={"/archive"}
+          onClick={(e) => {
+            if (pathname === "/archive") {
+              e.preventDefault();
+              router.push("/");
+            }
+          }}
+          scroll={false}
+        >
+          <Button
+            className={cn(
+              "group h-max items-start pt-1",
+              pathname.includes("/archive") && "text-primary-foreground"
+            )}
+            key={"Archive"}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            // transition={{ delay: 0.7, ease: "easeInOut" }}
+          >
+            <ArrowRightIcon
+              className={cn(
+                "w-3 h-3 mr-2 mt-[2px] flex-shrink-0 group-active:rotate-45 sm:group-hover:rotate-45 transition-transform duration-300",
+                pathname.includes("/archive") && "rotate-45"
+              )}
+            />
+            <div className="text-start text-wrap">
+              <AnimatedText text={"Archive"} />
+            </div>
+          </Button>
+        </Link>
+      </div>
 
       <li className="sm:hidden col-span-1 flex flex-col -space-y-3">
         <Link
