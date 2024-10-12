@@ -9,6 +9,7 @@ import NavbarPhone from "./NavbarPhone";
 import AnimatedText from "./AnimatedText";
 import AnimatedDivider from "./AnimatedDivider";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const routes = [
   { name: "Homepage", href: "/", value: "homepage" },
@@ -17,6 +18,11 @@ const routes = [
     name: "Digital Interface",
     href: "/digital_interface",
     value: "digital_interface",
+  },
+  {
+    name: "Archive",
+    href: "/archive",
+    value: "archive",
   },
 ];
 
@@ -44,6 +50,13 @@ const socials = [
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const { setTheme } = useTheme();
+
+  if (pathname === "/archive") {
+    setTheme("dark");
+  } else {
+    setTheme("light");
+  }
 
   return (
     <>
