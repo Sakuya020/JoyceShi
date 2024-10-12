@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const fontSans = FontSans({
   weight: ["300", "400", "500"],
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 600; // revalidate data every hour
+export const revalidate = 600; // revalidate data every 10 minutes
 
 export default function RootLayout({
   children,
@@ -33,10 +34,17 @@ export default function RootLayout({
       <body
         className={cn("px-4 pt-4 sm:px-[10px] sm:pt-[9px]", fontSans.className)}
       >
-        <div className="fixed top-0 right-0 left-0 h-[110px] -index-1 bg-background"></div>
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="fixed top-0 right-0 left-0 h-[110px] -index-1 bg-background"></div>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
