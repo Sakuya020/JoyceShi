@@ -19,6 +19,10 @@ const getData = async (slug: string) => {
         "video": video,
         "thumbnail": thumbnail.asset._ref
       },
+      videoList[]{
+        "file": file.asset._ref,
+        "thumbnail": thumbnail.asset._ref
+      },
       images[]{
         "image": asset._ref
       }
@@ -29,8 +33,17 @@ const getData = async (slug: string) => {
 };
 
 const page = async ({ params }: { params: { slug: string } }) => {
-  const { title, type, client, agency, awards, desc, videos, images } =
-    await getData(params.slug);
+  const {
+    title,
+    type,
+    client,
+    agency,
+    awards,
+    desc,
+    videos,
+    videoList,
+    images,
+  } = await getData(params.slug);
 
   return (
     <article>
@@ -84,6 +97,15 @@ const page = async ({ params }: { params: { slug: string } }) => {
           videos.map(
             (item: { video: string; thumbnail: string }, index: number) => (
               <VideoPlayer key={index} item={item} />
+            )
+          )}
+        {videoList?.length > 0 &&
+          videoList.map(
+            (item: { file: string; thumbnail: string }, index: number) => (
+              <VideoPlayer
+                key={index}
+                item={{ video: item.file, thumbnail: item.thumbnail }}
+              />
             )
           )}
         {images.map((item: { image: string }, index: number) => {

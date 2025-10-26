@@ -52,3 +52,10 @@ export function getImageInfo(url: string) {
 
   return { imgUrl, ratio };
 }
+
+export function getVideoUrl(url: string) {
+  const extension = url.substring(url.lastIndexOf("-") + 1);
+  const fileNameRegex = new RegExp("file-(.*?)-" + extension);
+  const fileName = url.match(fileNameRegex);
+  return `https://cdn.sanity.io/files/ypflkenz/production/${fileName?.[1]}.${extension}`;
+}

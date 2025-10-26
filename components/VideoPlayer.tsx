@@ -2,7 +2,7 @@
 
 import ReactPlayer from "react-player";
 import { useState, useEffect } from "react";
-import { getImageInfo } from "@/lib/utils";
+import { getImageInfo, getVideoUrl } from "@/lib/utils";
 
 const VideoPlayer = ({
   item,
@@ -20,10 +20,11 @@ const VideoPlayer = ({
 
   const { video, thumbnail } = item;
   const { imgUrl } = getImageInfo(thumbnail);
+  const videoUrl = getVideoUrl(video);
   return (
     <div className="flex justify-center items-center aspect-video bg-foreground">
       <video controls poster={imgUrl}>
-        <source src={video} />
+        <source src={videoUrl} />
       </video>
     </div>
   );

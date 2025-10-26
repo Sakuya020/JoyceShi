@@ -78,6 +78,27 @@ export default {
       ],
     },
     {
+      name: 'videoList',
+      title: 'Video List',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'file',
+              title: 'File',
+              type: 'file',
+              options: {
+                accept: ['video/*'],
+              },
+            },
+            {name: 'thumbnail', title: 'Thumbnail', type: 'image'},
+          ],
+        },
+      ],
+    },
+    {
       name: 'images',
       title: 'Images',
       type: 'array',
