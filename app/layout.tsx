@@ -15,7 +15,10 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Joyce Shi",
   description:
-    "Joyce Shi / joyceshi / designer / graphic design / Joyce Shi design / brand designer / art direction / designer based in New York / G Axis Press",
+    "Joyce Shi is a concept-driven, award-winning design director based in New York.
+
+She is the founder of publication practice G Axis Press and design studio Function Lab, with work featured globally in bookstores, galleries, and institutions including the Thomas J. Watson Library at the MET.
+  ",
   icons: {
     icon: "/icon.svg",
   },
