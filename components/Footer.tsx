@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="w-full">
-      {/* footer for pc view */}
+      {/* footer for pc view  */}
       <div className="hidden sm:block">
         <div className="h-8"></div>
         <div className="fixed bottom-0 flex items-center h-8 w-[calc(100vw-20px)] border-t border-foreground bg-background">
