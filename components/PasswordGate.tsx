@@ -16,15 +16,28 @@ export default function PasswordGate({
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
+  const [keyboardBottom, setKeyboardBottom] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const uiRef = useRef<HTMLDivElement>(null);
-  
+
 
   // 初始化时检查 sessionStorage
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY) === "true") {
       setIsUnlocked(true);
     }
+  }, []);
+
+  // 检测虚拟键盘高度，保持内容在 navbar 和键盘之间居中
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const handleResize = () => {
+      const kh = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+      setKeyboardBottom(kh);
+    };
+    vv.addEventListener("resize", handleResize);
+    return () => vv.removeEventListener("resize", handleResize);
   }, []);
 
   // 锁定时禁止滚动（iOS 兼容方案：position fixed + 记录恢复 scrollY）
@@ -85,71 +98,72 @@ export default function PasswordGate({
       <div className={showOverlay ? "pointer-events-none select-none" : ""}>{children}</div>
 
       {showOverlay && (
-      <div
-        className="fixed left-0 right-0 top-[94px] sm:top-[157px] bottom-16 sm:bottom-8 overflow-hidden"
-        style={{
-          transition: "opacity 0.7s ease-in-out",
-          opacity: isAnimatingOut ? 0 : 1,
-        }}
-        onTransitionEnd={handleTransitionEnd}
-      >
         <div
-          className="absolute inset-0"
+          className="fixed left-0 right-0 top-[94px] sm:top-[157px] bottom-16 sm:bottom-8 overflow-hidden"
           style={{
-            background: "#FFFFFFB2",
-            backdropFilter: "blur(50px)",
-            WebkitBackdropFilter: "blur(50px)",
+            transition: "opacity 0.7s ease-in-out",
+            opacity: isAnimatingOut ? 0 : 1,
           }}
-        />
-      </div>
+          onTransitionEnd={handleTransitionEnd}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "#FFFFFFB2",
+              backdropFilter: "blur(50px)",
+              WebkitBackdropFilter: "blur(50px)",
+            }}
+          />
+        </div>
       )}
 
       {/* 输入框 UI：fixed 居中 */}
       {showOverlay && (
-      <div
-        className="fixed inset-0 flex flex-col items-center justify-center px-4 sm:px-[10px] pointer-events-none"
-        style={{
-          transition: "opacity 0.7s ease-in-out",
-          opacity: isAnimatingOut ? 0 : 1,
-        }}
-      >
-        <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
-          This project is confidential.
-          <br className="sm:hidden" />
-          Enter password to view :-)
-        </p>
-
         <div
-          className="flex items-center border border-foreground/30 w-[265px] sm:w-[431px] pointer-events-auto bg-white"
+          className="fixed left-0 right-0 top-[94px] sm:top-0 bottom-16 sm:bottom-0 flex flex-col items-center justify-center px-4 sm:px-[10px] pointer-events-none"
           style={{
-            animation: error ? "shake 0.35s ease" : undefined,
+            transition: "opacity 0.7s ease-in-out",
+            opacity: isAnimatingOut ? 0 : 1,
+            ...(keyboardBottom > 0 ? { bottom: `${keyboardBottom}px` } : {}),
           }}
-          onAnimationEnd={() => setError(false)}
         >
-          <input
-            ref={inputRef}
-            type="text"
-            autoComplete="off"
-            value={"*".repeat(input.length)}
-            onChange={() => {}}
-            onKeyDown={handleKeyDown}
-            autoFocus
-            className="flex-1 min-w-0 text-xs px-[10px] py-[15px] outline-none"
-            onFocus={() => {
-              const meta = document.querySelector('meta[name="viewport"]');
-              if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
+          <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
+            This project is confidential.
+            <br className="sm:hidden" />
+            Enter password to view :-)
+          </p>
+
+          <div
+            className="flex items-center border border-foreground/30 w-[265px] sm:w-[431px] pointer-events-auto bg-white"
+            style={{
+              animation: error ? "shake 0.35s ease" : undefined,
             }}
-            onBlur={() => {
-              const meta = document.querySelector('meta[name="viewport"]');
-              if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1");
-            }}
-            placeholder={error ? "incorrect password" : ""}
-          />
-          <button onClick={handleSubmit} className="group px-[10px] py-[15px]">
-            <ArrowRightIcon className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-[2px]" />
-          </button>
+            onAnimationEnd={() => setError(false)}
+          >
+            <input
+              ref={inputRef}
+              type="text"
+              autoComplete="off"
+              value={"*".repeat(input.length)}
+              onChange={() => { }}
+              onKeyDown={handleKeyDown}
+              autoFocus
+              className="flex-1 min-w-0 text-xs px-[10px] py-[15px] outline-none"
+              onFocus={() => {
+                const meta = document.querySelector('meta[name="viewport"]');
+                if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
+              }}
+              onBlur={() => {
+                const meta = document.querySelector('meta[name="viewport"]');
+                if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1");
+              }}
+              placeholder={error ? "incorrect password" : ""}
+            />
+            <button onClick={handleSubmit} className="group px-[10px] py-[15px]">
+              <ArrowRightIcon className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-[2px]" />
+            </button>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );
