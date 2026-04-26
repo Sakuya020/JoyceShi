@@ -37,11 +37,7 @@ export default function PasswordGate({
       setKeyboardBottom(kh);
     };
     vv.addEventListener("resize", handleResize);
-    vv.addEventListener("scroll", handleResize);
-    return () => {
-      vv.removeEventListener("resize", handleResize);
-      vv.removeEventListener("scroll", handleResize);
-    };
+    return () => vv.removeEventListener("resize", handleResize);
   }, []);
 
   // 锁定时禁止滚动（iOS 兼容方案：position fixed + 记录恢复 scrollY）
@@ -128,7 +124,7 @@ export default function PasswordGate({
           style={{
             transition: "opacity 0.7s ease-in-out",
             opacity: isAnimatingOut ? 0 : 1,
-            ...(keyboardBottom > 0 ? { top: 0, bottom: `${keyboardBottom}px` } : {}),
+            ...(keyboardBottom > 0 ? { bottom: `${keyboardBottom}px` } : {}),
           }}
         >
           <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
