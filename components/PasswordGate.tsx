@@ -16,7 +16,6 @@ export default function PasswordGate({
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const [keyboardBottom, setKeyboardBottom] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const uiRef = useRef<HTMLDivElement>(null);
 
@@ -28,17 +27,20 @@ export default function PasswordGate({
     }
   }, []);
 
-  // 检测虚拟键盘高度，保持内容在 navbar 和键盘之间居中
+  // 锁定期间锁住 viewport 缩放，避免 iOS 弹出键盘时页面被放大
   useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const handleResize = () => {
-      const kh = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
-      setKeyboardBottom(kh);
+    if (isUnlocked) return;
+    const meta = document.querySelector('meta[name="viewport"]');
+    if (!meta) return;
+    const original = meta.getAttribute("content") || "";
+    meta.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    );
+    return () => {
+      meta.setAttribute("content", original);
     };
-    vv.addEventListener("resize", handleResize);
-    return () => vv.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isUnlocked]);
 
   // 锁定时禁止滚动（iOS 兼容方案：position fixed + 记录恢复 scrollY）
   useEffect(() => {
@@ -124,7 +126,6 @@ export default function PasswordGate({
           style={{
             transition: "opacity 0.7s ease-in-out",
             opacity: isAnimatingOut ? 0 : 1,
-            ...(keyboardBottom > 0 ? { bottom: `${keyboardBottom}px` } : {}),
           }}
         >
           <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
@@ -149,14 +150,6 @@ export default function PasswordGate({
               onKeyDown={handleKeyDown}
               autoFocus
               className="flex-1 min-w-0 text-xs px-[10px] py-[15px] outline-none"
-              onFocus={() => {
-                const meta = document.querySelector('meta[name="viewport"]');
-                if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
-              }}
-              onBlur={() => {
-                const meta = document.querySelector('meta[name="viewport"]');
-                if (meta) meta.setAttribute("content", "width=device-width, initial-scale=1");
-              }}
               placeholder={error ? "incorrect password" : ""}
             />
             <button onClick={handleSubmit} className="group px-[10px] py-[15px]">
