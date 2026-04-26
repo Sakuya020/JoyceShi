@@ -16,7 +16,7 @@ export default function PasswordGate({
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const [keyboardBottom, setKeyboardBottom] = useState(0);
+  const [viewportStyle, setViewportStyle] = useState<React.CSSProperties>({});
   const inputRef = useRef<HTMLInputElement>(null);
   const uiRef = useRef<HTMLDivElement>(null);
 
@@ -28,16 +28,30 @@ export default function PasswordGate({
     }
   }, []);
 
-  // 检测虚拟键盘高度，保持内容在 navbar 和键盘之间居中
+  // 追踪 visual viewport，使内容在 navbar 与键盘/footer 之间保持垂直居中（仅手机端）
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
-    const handleResize = () => {
-      const kh = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
-      setKeyboardBottom(kh);
+    const update = () => {
+      if (window.innerWidth >= 640) {
+        setViewportStyle({});
+        return;
+      }
+      const navH = 94;
+      const footerH = 64;
+      const kbH = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+      setViewportStyle({
+        top: `${vv.offsetTop + navH}px`,
+        bottom: `${Math.max(footerH, kbH)}px`,
+      });
     };
-    vv.addEventListener("resize", handleResize);
-    return () => vv.removeEventListener("resize", handleResize);
+    update();
+    vv.addEventListener("resize", update);
+    vv.addEventListener("scroll", update);
+    return () => {
+      vv.removeEventListener("resize", update);
+      vv.removeEventListener("scroll", update);
+    };
   }, []);
 
   // 锁定时禁止滚动（iOS 兼容方案：position fixed + 记录恢复 scrollY）
@@ -124,7 +138,7 @@ export default function PasswordGate({
           style={{
             transition: "opacity 0.7s ease-in-out",
             opacity: isAnimatingOut ? 0 : 1,
-            ...(keyboardBottom > 0 ? { bottom: `${keyboardBottom}px` } : {}),
+            ...viewportStyle,
           }}
         >
           <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
