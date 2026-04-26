@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Mono as FontSans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // 键盘以 overlay 方式弹出，不改变 layout viewport，修复 iOS fixed 定位偏移
+  interactiveWidget: "overlays-content",
 };
 
 export const revalidate = 600; // revalidate data every 10 minutes

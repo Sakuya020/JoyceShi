@@ -5,6 +5,8 @@ import { client } from "@/lib/sanity";
 import { getImageInfo } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { PortableText } from "next-sanity";
+import PasswordGate from "@/components/PasswordGate";
+import passwordConfig from "@/password-config.json"
 
 const getData = async (slug: string) => {
   const query = `
@@ -45,7 +47,10 @@ const page = async ({ params }: { params: { slug: string } }) => {
     images,
   } = await getData(params.slug);
 
-  return (
+  const needsPassword = passwordConfig.enabled &&
+    passwordConfig.protectedSlugs.includes(params.slug);
+
+  const content = (
     <article>
       <header className="grid grid-cols-3 sm:grid-cols-6 gap-x-[5px] sm:gap-x-[10px] sm:h-[114px] py-4 sm:py-2 animate-fade">
         <div className="col-span-1 flex">
@@ -121,7 +126,16 @@ const page = async ({ params }: { params: { slug: string } }) => {
         </div>
       </section>
     </article>
+  )
+
+  return needsPassword ? (
+    <PasswordGate correctPassword={process.env.PROJECT_PASSWORD!}>
+      {content}
+    </PasswordGate>
+  ) : (
+    content
   );
+
 };
 
 export default page;
