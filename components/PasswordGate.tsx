@@ -130,6 +130,7 @@ export default function PasswordGate({
         >
           <p className="text-xs mb-[35px] w-[265px] sm:w-[431px] text-center break-words">
             This project is confidential.
+            <span className="hidden sm:inline">&nbsp;</span>
             <br className="sm:hidden" />
             Enter password to view :-)
           </p>
